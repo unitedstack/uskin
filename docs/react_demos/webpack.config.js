@@ -17,10 +17,9 @@ dirs.forEach(function(dir) {
 });
 
 module.exports = {
-  progress: true,
   entry: entry,
   output: {
-    path: './dist',
+    path: path.resolve('./dist'),
     filename: '[name].js'
   },
   externals: {
@@ -32,7 +31,7 @@ module.exports = {
     }
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   module: {
     loaders: [{
