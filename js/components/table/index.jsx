@@ -391,13 +391,13 @@ class Table extends React.Component {
   }
 
   filter(columnKeys, filterBy, e) {
-    let data = this.props.data;
-    const state = this.state;
-
-    if (filterBy) {
-      data = this.getFilteredData(columnKeys, filterBy, data);
-    }
-
+    let data = this.props.data,
+      state = this.state;
+      if (!this.props.getData) {
+        data = this.getFilteredData(columnKeys, filterBy, data);
+      } else {
+        this.props.getData(columnKeys, filterBy);
+      }
     //check sort
     if (this.state.sortCol) {
       data = this.getSortedData(state.sortCol, state.sortDirection, data);
