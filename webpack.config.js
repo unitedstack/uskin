@@ -45,7 +45,7 @@ module.exports = {
           loader: 'css-loader',
           options: {
             sourceMap: true,
-            minimize: false
+            minimize: ~process.argv.indexOf('--min')
           }
         }, {
           loader: 'postcss-loader',
