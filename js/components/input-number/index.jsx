@@ -34,6 +34,12 @@ class InputNumber extends React.Component {
     return value;
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      value: nextProps.value
+    });
+  }
+
   getStepLength(step) {
     let len = step.toString().split('.')[1];
 
