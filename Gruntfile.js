@@ -8,6 +8,7 @@ var fs = require('fs');
 var webpackConfig = require('./webpack.config.js');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var lessVarParse = require('less-var-parse');
 
 module.exports = function(grunt) {
 
@@ -116,12 +117,24 @@ module.exports = function(grunt) {
   grunt.registerTask('js', ['webpack:dev', 'webpack:build']);
 
   // Default task.
-  grunt.registerTask('build', ['clean:dist', 'js', 'copy', 'clean:legacy', 'usebanner']);
+  grunt.registerTask('build', ['clean:dist', 'js', 'copy', 'clean:legacy', 'usebanner', 'palette']);
 
   // Release with hash.
   grunt.registerTask('release', ['clean:dist', 'webpack:build', 'copy', 'clean:legacy', 'usebanner']);
 
   // Generate web font
   grunt.registerTask('font', ['webfont']);
+
+  // Generate palette preview
+  grunt.registerTask('palette', function(buildTheme) {
+    const done = this.async();
+    const theme = process.env.npm_config_theme || buildTheme || 'default';
+    fs.readFile(`css/themes/${theme}/index.less`, 'utf8', (e, data) => {
+      const template = fs.readFileSync('css/template/preview.tpl', 'utf8');
+      const vars = JSON.stringify(lessVarParse(data));
+      const content = template.replace('@palette', vars).replace('@theme_name', theme);
+      fs.writeFile(`css/themes/${theme}/index.html`, content, done);
+    });
+  });
 
 };
