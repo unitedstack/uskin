@@ -29,6 +29,12 @@ class Switch extends React.Component {
     this.props.onChange(e, checked);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      checked: nextProps.checked
+    });
+  }
+
   getClassName(props) {
     let className = 'switch';
 
