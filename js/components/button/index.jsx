@@ -8,7 +8,8 @@ class Button extends React.Component {
     super(props);
 
     this.state = {
-      disabled: props.disabled
+      disabled: props.disabled,
+      hide: props.hide
     };
 
     ['onClick'].forEach((func) => {
@@ -48,24 +49,24 @@ class Button extends React.Component {
     switch (props.tag) {
       case 'div':
         return (
-          <div className={this.getClassName(props, state)}
+          !state.hide ? <div className={this.getClassName(props, state)}
             onClick={!state.disabled ? this.onClick : null}
           >
             {props.iconClass ? <i className={iconPrefix + props.iconClass} /> : null}
             {props.value ? <span>{props.value}</span> : null}
             {props.dropdown ? <i className={iconPrefix + 'dropdown'} /> : null}
-          </div>
+          </div> : null
         );
       default:
         return (
-          <button className={this.getClassName(props, state)}
+          !state.hide ? <button className={this.getClassName(props, state)}
             disabled={state.disabled}
             onClick={!state.disabled ? this.onClick : null}
           >
             {props.iconClass ? <i className={iconPrefix + props.iconClass} /> : null}
             {props.value ? <span>{props.value}</span> : null}
             {props.dropdown ? <i className={iconPrefix + 'dropdown'} /> : null}
-          </button>
+          </button> : null
         );
     }
   }
@@ -83,7 +84,8 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   initial: PropTypes.bool,
   selected: PropTypes.bool,
-  dropdown: PropTypes.bool
+  dropdown: PropTypes.bool,
+  hide: PropTypes.bool
 };
 
 Button.defaultProps = {
@@ -91,7 +93,8 @@ Button.defaultProps = {
   disabled: false,
   initial: false,
   selected: false,
-  dropdown: false
+  dropdown: false,
+  hide: false
 };
 
 export default Button;
