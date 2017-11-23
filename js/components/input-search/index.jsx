@@ -40,7 +40,7 @@ class InputSearch extends React.Component {
   }
 
   render() {
-    const {width, type} = this.props;
+    const {width, type, placeholder} = this.props;
     const state = this.state;
     const style = styles.getWidth(width, 10);
     const inputWidth = styles.getWidth(width - 48);
@@ -51,6 +51,7 @@ class InputSearch extends React.Component {
           ref="search"
           style={inputWidth}
           value={state.value}
+          placeholder={placeholder}
           onChange={this.onChange} />
         <div className="search-icon" onClick={this.onClick}>
           <i className="glyphicon icon-search"></i>
