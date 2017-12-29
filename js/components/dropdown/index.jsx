@@ -47,7 +47,7 @@ class Dropdown extends React.Component {
           : null
         }
         {
-          element.items.map((ele, i) =>
+          element.items.filter(i => !i.hide).map((ele, i) =>
             <li className={this.getClassName(ele)}
               key={i}
               onClick={props.onClick && !ele.disabled ? this.onClick.bind(null, ele) : null}
