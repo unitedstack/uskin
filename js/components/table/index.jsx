@@ -135,7 +135,7 @@ class Table extends React.Component {
     } else if (isChecked) {
       newCheckedKeys[key] = true;
       // 点击的同时shift键被按下
-      if(state.shift) {
+      if(state.shift && e.target.checked) {
         // 按大小排列start和end
         let start, end;
         if(state.start > index) {
