@@ -16,6 +16,9 @@ class Table extends React.Component {
     this.state = {
       data: this.props.data,
       loading: this.props.loading,
+      // shift键多选
+      start: '',
+      shift: false,
       checkedKey: {},
       sortCol: undefined,
       sortDirection: undefined,
@@ -95,8 +98,27 @@ class Table extends React.Component {
     }
   }
 
+  onShiftKey(index, e) {
+    const state = this.state;
+    const shift = state.shift;
+    this.setState({
+      shift: e.shiftKey
+    });
+    if(e.shiftKey && typeof index === 'number') {
+      this.setState({
+        // 如果shift为true， 说明上次点击shift被按下，start不用更新, 反之更新start.
+        start: shift ? state.start : index
+      });
+    } else { // 点击的是all, 所以清空start.
+      this.setState({
+        start: ''
+      });
+    }
+  }
+
   //checkbox onChange
-  onCheck(e) {
+  onCheck(index, e) {
+    const state = this.state;
     let key = e.target.value;
     let isChecked = e.target.checked;
     let checkedKeys = this.state.checkedKey;
@@ -106,12 +128,31 @@ class Table extends React.Component {
       newCheckedKeys = {};
       if (isChecked) {
         let dataKey = this.props.dataKey;
-        this.state.data.forEach((item) => {
+        state.data.forEach((item) => {
           newCheckedKeys[item[dataKey]] = true;
         });
       }
     } else if (isChecked) {
       newCheckedKeys[key] = true;
+      // 点击的同时shift键被按下
+      if(state.shift) {
+        // 按大小排列start和end
+        let start, end;
+        if(state.start > index) {
+          start = index;
+          end = state.start;
+        } else {
+          start = state.start;
+          end = index;
+        }
+        const dataKey = this.props.dataKey;
+        state.data.forEach((item, i) => {
+          // 在start和end中的全部选中
+          if(i >= start && i <= end) {
+            newCheckedKeys[item[dataKey]] = true;
+          }
+        });
+      }
     } else {
       delete newCheckedKeys[key];
     }
@@ -507,7 +548,7 @@ class Table extends React.Component {
           {
             props.checkbox ?
               <div key="checkbox" className="checkbox">
-                <input value="null" onChange={this.onCheck} type="checkbox" checked={checkedAll} />
+                <input value="null" onMouseDown={this.onShiftKey.bind(this, null)} onChange={this.onCheck.bind(this, null)} type="checkbox" checked={checkedAll} />
               </div>
             : null
           }
@@ -582,7 +623,8 @@ class Table extends React.Component {
                     props.checkbox ?
                       <div className="checkbox">
                         <input value={key}
-                          onChange={this.onCheck}
+                          onMouseDown={this.onShiftKey.bind(this, index)}
+                          onChange={this.onCheck.bind(this, index)}
                           type="checkbox"
                           checked={checked} />
                       </div>
