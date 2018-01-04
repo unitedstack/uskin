@@ -68,3 +68,9 @@ input,
 textarea {
   outline: 0;
 }
+// hide ie drop-down arrow
+select {
+  &::-ms-expand {
+    display: none;
+  }
+}
