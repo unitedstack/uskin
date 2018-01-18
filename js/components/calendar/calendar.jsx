@@ -235,8 +235,10 @@ class Calendar extends React.Component {
     const props = this.props;
     const state = this.state;
 
+    const style = props.width ? {width: props.width} : {width: '161px'};
+
     return (
-      <div className="calendar-box" ref="calendar-box" onClick={this.onToggle}>
+      <div style={style} className="calendar-box" ref="calendar-box" onClick={this.onToggle}>
         <Screen {...state}
           unfold={state.unfold}
           placeholder={props.placeholder}
@@ -266,7 +268,8 @@ Calendar.propTypes = {
   local: PropTypes.shape({
     weeks: PropTypes.arrayOf(PropTypes.string),
     months: PropTypes.arrayOf(PropTypes.string)
-  })
+  }),
+  width: PropTypes.number
 };
 
 Calendar.defaultProps = {

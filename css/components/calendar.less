@@ -15,9 +15,9 @@
 .calendar-box {
   position: relative;
   display: inline-block;
-  width: 161px;
 
   .calendar-screen {
+    width: 100%;
     position: relative;
 
     .icon-calendar {
@@ -29,7 +29,11 @@
     }
 
     > input {
+      width: 100%;
       padding: 4px 10px 4px 24px;
+      box-sizing: border-box;
+      height: 32px;
+      line-height: 32px;
       cursor: pointer;
       &::placeholder {
         color: @calendar_screen_placeholder_color;
