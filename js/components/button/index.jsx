@@ -41,6 +41,11 @@ class Button extends React.Component {
     return className;
   }
 
+  // 如果不做这一步操作，当点击按钮之后，摁enter键，会重复执行点击事件。
+  handleKeyDown(e) {
+    e.preventDefault();
+  }
+
   render() {
     const props = this.props;
     const state = this.state;
@@ -59,7 +64,8 @@ class Button extends React.Component {
         );
       default:
         return (
-          !state.hide ? <button className={this.getClassName(props, state)}
+          !state.hide ? <button onKeyDown={this.handleKeyDown}
+            className={this.getClassName(props, state)}
             disabled={state.disabled}
             onClick={!state.disabled ? this.onClick : null}
           >
