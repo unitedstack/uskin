@@ -13,7 +13,7 @@ class Modal extends React.Component {
     };
     this.mask = document.querySelector('.modal-mask');
 
-    ['onClose', 'hide', 'show'].forEach((func) => {
+    ['onClose', 'hide', 'show', 'keyboardListener'].forEach((func) => {
       this[func] = this[func].bind(this);
     });
   }
@@ -85,11 +85,36 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
+    document.addEventListener('keyup', this.keyboardListener);
+  
     if (this.props.parent) {
       this.show(true);
     } else {
       this.show();
     }
+  }
+
+  keyboardListener(e) {
+    if(this.props.nokeyboard) {
+      return;
+    }
+    if(this.state.visible) {
+      switch(e.code) {
+        case 'Escape':
+          this.onCancel();
+          break;
+        case 'Enter':
+        case 'NumpadEnter':
+          this.onConfirm();
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.keyboardListener);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -104,6 +129,14 @@ class Modal extends React.Component {
     } else {
       this.hide();
     }
+  }
+
+  onConfirm() {
+    this.props.onConfirm && this.props.onConfirm();
+  }
+
+  onCancel() {
+    this.props.onCancel && this.props.onCancel();
   }
 
   render() {
