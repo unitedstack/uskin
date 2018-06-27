@@ -173,8 +173,21 @@ class InputNumber extends React.Component {
     const inputBoxWidth = styles.getWidth(props.width);
     const inputWidth = styles.getWidth(props.width - 42);
 
-    return (
-      <div className={props.disabled ? 'input-number disabled' : 'input-number'} style={inputBoxWidth}>
+    return (<div>
+      {props.type && props.type === 'mini' ? <div className="input-number-mini">
+        <span className={this.isLowerBound(state.value) ? 'disabled' : ''}
+          onClick={this.isLowerBound(state.value) ? null : this.prevStep}>
+          {'-'}
+        </span>
+        <input min={state.min}
+          max={state.max}
+          value={value}
+          onChange={this.onChange} />
+        <span className={this.isUpperBound(state.value) ? 'disabled' : ''}
+          onClick={this.isUpperBound(state.value) ? null : this.nextStep}>
+          {'+'}
+        </span>
+      </div> : <div className={props.disabled ? 'input-number disabled' : 'input-number'} style={inputBoxWidth}>
         <div className="arrow">
           <div className={this.isUpperBound(state.value) ? 'arrow-up disabled' : 'arrow-up'}
             onClick={this.isUpperBound(state.value) ? null : this.nextStep}>
@@ -194,8 +207,8 @@ class InputNumber extends React.Component {
           min={state.min}
           max={state.max}
           value={value} />
-      </div>
-    );
+      </div>}
+    </div>);
   }
 
 }
