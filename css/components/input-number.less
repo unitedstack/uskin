@@ -7,6 +7,33 @@
 @input_number_disabled_border_color: @color_disabled_300;
 @input_number_disabled_bg_color: @color_disabled_200;
 
+.input-number-mini {
+  user-select: none;
+  .disabled {
+    cursor: not-allowed !important;
+  }
+  > span {
+    display: inline-block;
+    width: 20px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 12px;
+    text-align: center;
+    background: #F6F6F6;
+    border-radius: 2px 0 0 2px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  > input {
+    width: 32px;
+    background: #FCFCFC;
+    border-color: #FCFCFC;
+    text-align: center;
+    padding: 4px 6px;
+  }
+}
+
 .input-number {
   width: 80px;
   position: relative;
