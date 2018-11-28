@@ -19,7 +19,9 @@ class Tab extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.findDefaultTab(nextProps.items);
+    if (JSON.stringify(nextProps.items) !== JSON.stringify(this.props.items)) {
+      this.findDefaultTab(nextProps.items);
+    }
   }
 
   findDefaultTab(items) {
