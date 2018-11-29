@@ -19,7 +19,8 @@ class Tab extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (JSON.stringify(nextProps.items) !== JSON.stringify(this.props.items)) {
+    // 用于解决外层state改变导致所选tab强制变为default key的问题
+    if (!this.props.noFindDefault) {
       this.findDefaultTab(nextProps.items);
     }
   }
