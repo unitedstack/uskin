@@ -9,7 +9,8 @@ class Button extends React.Component {
 
     this.state = {
       disabled: props.disabled,
-      hide: props.hide
+      hide: props.hide,
+      loading: props.loading
     };
 
     ['onClick'].forEach((func) => {
@@ -18,9 +19,13 @@ class Button extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.disabled !== this.props.disabled) {
+    if (
+      nextProps.disabled !== this.props.disabled ||
+      nextProps.loading !== this.props.loading
+    ) {
       this.setState({
-        disabled: nextProps.disabled
+        disabled: nextProps.disabled,
+        loading: nextProps.loading
       });
     }
   }
@@ -37,6 +42,7 @@ class Button extends React.Component {
     props.initial && (className += ' btn-initial');
     props.selected && (className += ' selected');
     state.disabled && (className += ' disabled');
+    state.loading && (className += ' btn-loading')
 
     return className;
   }
@@ -55,9 +61,10 @@ class Button extends React.Component {
       case 'div':
         return (
           !state.hide ? <div className={this.getClassName(props, state)}
-            onClick={!state.disabled ? this.onClick : null}
+            onClick={!state.disabled && !state.loading ? this.onClick : null}
           >
-            {props.iconClass ? <i className={iconPrefix + props.iconClass} /> : null}
+            {props.iconClass && !state.loading ? <i className={iconPrefix + props.iconClass} /> : null}
+            {state.loading ? <i className={iconPrefix + 'loading'} /> : null}
             {props.value ? <span>{props.value}</span> : null}
             {props.dropdown ? <i className={iconPrefix + 'dropdown'} /> : null}
           </div> : null
@@ -67,9 +74,10 @@ class Button extends React.Component {
           !state.hide ? <button onKeyDown={this.handleKeyDown}
             className={this.getClassName(props, state)}
             disabled={state.disabled}
-            onClick={!state.disabled ? this.onClick : null}
+            onClick={!state.disabled && !state.loading ? this.onClick : null}
           >
-            {props.iconClass ? <i className={iconPrefix + props.iconClass} /> : null}
+            {props.iconClass && !state.loading ? <i className={iconPrefix + props.iconClass} /> : null}
+            {state.loading ? <i className={iconPrefix + 'loading'} /> : null}
             {props.value ? <span>{props.value}</span> : null}
             {props.dropdown ? <i className={iconPrefix + 'dropdown'} /> : null}
           </button> : null
@@ -88,6 +96,7 @@ Button.propTypes = {
   size: PropTypes.oneOf(['xl', 'lg', 'sm', 'xs']),
   tag: PropTypes.oneOf(['div']),
   disabled: PropTypes.bool,
+  loading: PropTypes.bool,
   initial: PropTypes.bool,
   selected: PropTypes.bool,
   dropdown: PropTypes.bool,
@@ -100,7 +109,8 @@ Button.defaultProps = {
   initial: false,
   selected: false,
   dropdown: false,
-  hide: false
+  hide: false,
+  loading: false
 };
 
 export default Button;
