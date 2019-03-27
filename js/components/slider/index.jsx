@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import styles from '../../mixins/styles';
 
 function noop() {}
@@ -167,9 +168,9 @@ Slider.propTypes = {
   step: PropTypes.number,
   value: PropTypes.number,
   width: PropTypes.number,
-  onChange: React.PropTypes.func,
-  hideThumb: React.PropTypes.bool,
-  disabled: React.PropTypes.bool
+  onChange: PropTypes.func,
+  hideThumb: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 Slider.defaultProps = {
