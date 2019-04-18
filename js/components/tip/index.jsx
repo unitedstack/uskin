@@ -80,6 +80,10 @@ class Tip extends React.Component {
     let contentStyle = (props.width && iconType) ?
       {width: parseInt(props.width, 10) - 70} : null;
 
+    if (props.style) {
+      style = Object.assign({}, style, props.style);
+    }
+
     return (
       <div className={className} style={style}>
         {
