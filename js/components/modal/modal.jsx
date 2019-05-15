@@ -20,9 +20,14 @@ class Modal extends React.Component {
   }
 
   onClose() {
+    const closeParent = this.props.closeParent;
     if (this.props.parent) {
       this.hide(true);
-      this.props.parent.show(true);
+      if (closeParent) {
+        this.props.parent.onClose();
+      } else {
+        this.props.parent.show(true);
+      }
     } else {
       this.hide();
     }
@@ -87,7 +92,7 @@ class Modal extends React.Component {
 
   componentDidMount() {
     document.addEventListener('keyup', this.keyboardListener);
-  
+
     if (this.props.parent) {
       this.show(true);
     } else {
@@ -125,8 +130,13 @@ class Modal extends React.Component {
     if (nextProps.visible === true) {
       this.show();
     } else if (this.props.parent) {
+      const closeParent = nextProps.closeParent;
       this.hide(true);
-      this.props.parent.show(true);
+      if (closeParent) {
+        this.props.parent.onClose();
+      } else {
+        this.props.parent.show(true);
+      }
     } else {
       this.hide();
     }
@@ -161,6 +171,7 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
   parent: PropTypes.instanceOf(Modal),
+  closeParent: PropTypes.bool,
   title: PropTypes.string,
   width: PropTypes.number,
   visible: PropTypes.bool,
