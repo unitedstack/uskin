@@ -6,4 +6,3 @@ coverage
 dist
 docs/react_demos/dist
 .eslintcache
-package-lock.json
