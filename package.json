@@ -1,6 +1,6 @@
 {
   "name": "@ustack/uskin",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A graceful framework which provides developers another chance to build an amazing site.",
   "license": "MIT",
   "main": "index.js",
