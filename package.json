@@ -1,17 +1,8 @@
 {
   "name": "@ustack/uskin",
-  "description": "A graceful framework which provides developers another chance to build an amazing site.",
   "version": "0.6.0",
-  "keywords": [
-    "css",
-    "less",
-    "react",
-    "babel",
-    "front-end",
-    "framework"
-  ],
-  "homepage": "https://github.com/icecreamliker/uskin",
-  "author": "Lee Yao <yaoli111144@gmail.com>",
+  "description": "A graceful framework which provides developers another chance to build an amazing site.",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "build": "grunt build",
@@ -24,14 +15,6 @@
     "dev": "rm -rf dist && webpack --config dev.webpack.config.js",
     "palette": "grunt palette"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/icecreamliker/uskin.git"
-  },
-  "bugs": {
-    "url": "https://github.com/icecreamliker/uskin/issues"
-  },
-  "license": "MIT",
   "devDependencies": {
     "@ustack/uskin-icons": "^0.1.1",
     "autoprefixer": "^6.3.6",
@@ -74,5 +57,22 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.3.1",
     "webpack-dev-server": "^2.4.1"
+  },
+  "author": "The USkin Authors",
+  "keywords": [
+    "css",
+    "uskin",
+    "less",
+    "react",
+    "front-end",
+    "framework"
+  ],
+  "homepage": "https://github.com/unitedstack/uskin#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unitedstack/uskin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unitedstack/uskin/issues"
   }
 }
