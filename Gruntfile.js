@@ -19,9 +19,8 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*!\n' +
       ' * USkin v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
-      ' * Inspired by bootstrap\n' +
       ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-      ' * Licensed under <%= pkg.license %> (https://github.com/icecreamliker/uskin/blob/master/LICENSE)\n' +
+      ' * Licensed under <%= pkg.license %> (https://github.com/unitedstack/uskin/blob/master/LICENSE)\n' +
       ' */\n',
 
     // Task configuration.
