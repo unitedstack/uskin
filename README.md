@@ -1,5 +1,4 @@
-<p align="center"><img src="./.github/uskin-logo.png" alt="USkin"></p>
-
+<h1 align="center">USkin</h1>
 
 [![Version](https://img.shields.io/npm/v/@ustack/uskin.svg)](https://www.npmjs.com/package/@ustack/uskin)
 [![Downloads](https://img.shields.io/npm/dt/@ustack/uskin.svg)](https://www.npmjs.com/package/@ustack/uskin)
