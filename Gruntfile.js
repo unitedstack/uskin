@@ -58,29 +58,6 @@ module.exports = function(grunt) {
       }
     },
 
-    webfont: {
-      icons: {
-        src: 'fonts_svg/*.svg',
-        dest: 'css/fonts',
-        options: {
-          types: 'eot,woff,ttf,svg',
-          syntax: 'bem',
-          stylesheet: 'less',
-          relativeFontPath: 'fonts',
-          destHtml: 'docs/raw_demos',
-          templateOptions: {
-            baseClass: 'glyphicon',
-            classPrefix: 'icon-'
-          },
-          callback: function() {
-            var src = 'css/fonts/icons.less',
-              dest = 'css/icons.less';
-            fs.renameSync(src, dest);
-          }
-        }
-      }
-    },
-
     copy: {
       fonts: {
         expand: true,
@@ -121,9 +98,6 @@ module.exports = function(grunt) {
 
   // Release with hash.
   grunt.registerTask('release', ['clean:dist', 'webpack:build', 'copy', 'clean:legacy', 'usebanner']);
-
-  // Generate web font
-  grunt.registerTask('font', ['webfont']);
 
   // Generate palette preview
   grunt.registerTask('palette', function(buildTheme) {
