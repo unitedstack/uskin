@@ -1,6 +1,6 @@
 {
   "name": "@ustack/uskin",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A graceful framework which provides developers another chance to build an amazing site.",
   "license": "MIT",
   "main": "index.js",
@@ -16,7 +16,7 @@
     "palette": "grunt palette"
   },
   "devDependencies": {
-    "@ustack/uskin-icons": "^0.1.1",
+    "@ustack/uskin-icons": "^0.1.2",
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.1.12",
     "babel-eslint": "^7.1.1",
