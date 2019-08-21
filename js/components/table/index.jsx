@@ -33,7 +33,7 @@ class Table extends React.Component {
     });
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const props = this.props;
     let initChecked = this.props.checkboxInitialize;
 
@@ -66,7 +66,7 @@ class Table extends React.Component {
     window.removeEventListener('resize', this.resizeScrollCol);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     let data = this.getProcessedData(nextProps.data, nextProps.dataKey);
     this.setState({
       data: data,

@@ -21,7 +21,7 @@ class Notice extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.type !== nextProps.type) {
       this.setState({
         className: nextProps.type && (TYPES.indexOf(nextProps.type) > -1) ? 'notice notice-' + nextProps.type : 'notice'

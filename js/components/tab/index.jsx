@@ -15,11 +15,11 @@ class Tab extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.findDefaultTab(this.props.items);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // 用于解决外层state改变导致所选tab强制变为default key的问题
     if (!this.props.noFindDefault) {
       this.findDefaultTab(nextProps.items);

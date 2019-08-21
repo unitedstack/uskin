@@ -83,7 +83,7 @@ class Modal extends React.Component {
     });
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.setState({
       className: 'modal modal-enter'
     });
@@ -123,7 +123,7 @@ class Modal extends React.Component {
     document.removeEventListener('keyup', this.keyboardListener);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.visible === this.props.visible) {
       return;
     }

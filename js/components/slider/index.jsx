@@ -20,11 +20,11 @@ class Slider extends React.Component {
       });
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.getProps(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.getProps(nextProps);
   }
 

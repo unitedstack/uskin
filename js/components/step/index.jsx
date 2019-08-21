@@ -19,7 +19,7 @@ class Step extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     let index = nextProps.items.findIndex((ele) => ele.default);
     this.setState({
       selectedIndex: index
