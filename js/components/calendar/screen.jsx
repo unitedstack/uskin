@@ -15,7 +15,7 @@ class Screen extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       value: this.getDefaultValue(nextProps)
     });

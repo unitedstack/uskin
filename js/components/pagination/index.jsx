@@ -28,7 +28,7 @@ class Pagination extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       current: nextProps.current
     });

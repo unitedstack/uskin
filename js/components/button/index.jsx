@@ -19,7 +19,7 @@ class Button extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (
       nextProps.disabled !== this.props.disabled ||
       nextProps.loading !== this.props.loading

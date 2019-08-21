@@ -30,7 +30,7 @@ class Switch extends React.Component {
     this.props.onChange(e, checked);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       checked: nextProps.checked
     });

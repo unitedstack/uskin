@@ -19,11 +19,11 @@ class Menu extends React.Component {
     });
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.update(this.props.items);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.update(nextProps.items);
   }
 
